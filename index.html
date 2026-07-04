@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyde Park Rangers FC — Hyde Park's Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #1A4731;
+      --gold:    #C9A84C;
+      --cream:   #F5F0E8;
+      --dark:    #0D1B12;
+      --white:   #FFFFFF;
+      --gray:    #6B7280;
+      --light:   #E8F0EB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: rgba(13, 27, 18, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    }
+
+    .nav-crest {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .crest-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--green);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .nav-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .nav-league {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(13,27,18,0.7) 0%, rgba(13,27,18,0.95) 100%),
+        repeating-linear-gradient(
+          45deg,
+          rgba(26,71,49,0.15) 0px,
+          rgba(26,71,49,0.15) 1px,
+          transparent 1px,
+          transparent 40px
+        );
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 12vw, 112px);
+      line-height: 0.9;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      margin: 24px 0 40px;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    /* TEAMS SECTION */
+    .section {
+      padding: 80px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 6vw, 56px);
+      letter-spacing: 1px;
+      margin-bottom: 48px;
+      line-height: 1;
+    }
+
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .team-card {
+      background: rgba(26,71,49,0.2);
+      border: 1px solid rgba(26,71,49,0.5);
+      border-radius: 8px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+
+    .team-card:hover {
+      border-color: var(--gold);
+    }
+
+    .team-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .team-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .team-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+
+    /* YOUTH SIGNUP */
+    .signup-section {
+      background: var(--green);
+      padding: 80px 24px;
+    }
+
+    .signup-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .signup-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(80px, 14vw, 140px);
+      line-height: 1;
+      color: var(--gold);
+    }
+
+    .signup-price-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.6);
+      margin-top: -8px;
+      margin-bottom: 24px;
+    }
+
+    .includes-list {
+      list-style: none;
+      margin: 24px 0 36px;
+    }
+
+    .includes-list li {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .includes-list li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .signup-form-side .section-label { color: rgba(255,255,255,0.5); }
+
+    .signup-form-side .section-title { font-size: clamp(32px, 5vw, 48px); }
+
+    /* LEAGUE FOOTER BAND */
+    .league-band {
+      background: rgba(201,168,76,0.08);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .league-band-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .league-band-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+
+    .league-band-link {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      display: block;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 80px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-section .section-title {
+      margin-bottom: 16px;
+    }
+
+    .contact-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .signup-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .nav-league { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-crest">
+      <div class="crest-icon">⚽</div>
+      <div>
+        <div class="nav-name">Hyde Park Rangers FC</div>
+        <div class="nav-league">OutSouth League · Chicago</div>
+      </div>
+    </div>
+    <a href="#register" class="nav-cta">Register Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Hyde Park · Chicago South Side</div>
+    <h1 class="hero-title">
+      Hyde Park's
+      <span>Football Club</span>
+    </h1>
+    <p class="hero-sub">
+      Men's, women's, and youth soccer rooted in Hyde Park.
+      Everyone welcome. No experience necessary.
+    </p>
+    <div class="hero-actions">
+      <a href="#register" class="btn-primary">Register Your Child</a>
+      <a href="#teams" class="btn-outline">Our Teams</a>
+    </div>
+  </section>
+
+  <!-- TEAMS -->
+  <section class="section" id="teams">
+    <div class="section-label">The Club</div>
+    <h2 class="section-title">Three Teams.<br>One Community.</h2>
+    <div class="teams-grid">
+      <div class="team-card">
+        <div class="team-badge">MEN'S FIRST TEAM</div>
+        <div class="team-name">Hyde Park Rangers FC</div>
+        <p class="team-desc">Competing in the OutSouth League — Chicago's premier grassroots adult soccer competition on the South Side.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-badge">WOMEN'S TEAM</div>
+        <div class="team-name">Hyde Park Rangers FC</div>
+        <p class="team-desc">Women's competitive play in the OutSouth League. Open to players of all experience levels from Hyde Park and surrounding neighborhoods.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-badge">YOUTH · AGES 4–17</div>
+        <div class="team-name">Rangers Academy</div>
+        <p class="team-desc">Structured training, competitive games, and real development for South Side kids. $50 for the entire summer.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- YOUTH SIGNUP -->
+  <section class="signup-section" id="register">
+    <div class="signup-inner">
+      <div>
+        <div class="signup-price">$50</div>
+        <div class="signup-price-label">FOR THE ENTIRE SUMMER</div>
+        <ul class="includes-list">
+          <li>2 practice sessions per week</li>
+          <li>Weekend games</li>
+          <li>Full uniform included</li>
+          <li>Practice shirt included</li>
+          <li>Ages 4–17 · All skill levels</li>
+          <li>No experience necessary</li>
+        </ul>
+      </div>
+      <div class="signup-form-side">
+        <div class="section-label">Youth Program</div>
+        <h2 class="section-title">Register Your Child Today</h2>
+        <p style="font-size:15px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:32px;">
+          Spots are limited. Hyde Park Rangers FC is building the next generation of South Side footballers — give your child a real team, a real kit, and a real community this summer.
+        </p>
+        <a href="https://chicagosuperleague.com" class="btn-primary" target="_blank">Sign Up at chicagosuperleague.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAGUE BAND -->
+  <div class="league-band">
+    <div class="league-band-label">Competing In</div>
+    <div class="league-band-name">The OutSouth League</div>
+    <a href="https://chicagosuperleague.com" class="league-band-link" target="_blank">chicagosuperleague.com →</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Join The Club</h2>
+    <p class="contact-sub">Questions about youth registration, adult tryouts, or sponsorship? Reach out.</p>
+    <div class="contact-actions">
+      <a href="mailto:info@chicagosuperleague.com" class="btn-primary">Email Us</a>
+      <a href="https://chicagosuperleague.com" class="btn-outline" target="_blank">Visit League Site</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Hyde Park Rangers FC · Part of the <a href="https://chicagosuperleague.com">OutSouth League</a> · MegCity Futbol · Chicago, IL</p>
+  </footer>
+
+</body>
+</html>
