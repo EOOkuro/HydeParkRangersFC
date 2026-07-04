@@ -9,20 +9,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green:   #1A4731;
-      --gold:    #C9A84C;
-      --cream:   #F5F0E8;
-      --dark:    #0D1B12;
-      --white:   #FFFFFF;
-      --gray:    #6B7280;
-      --light:   #E8F0EB;
+      --navy-dark: #0a1128;      /* deepest navy */
+      --navy:       #142442;      /* primary navy */
+      --navy-light: #1e3a6b;      /* lighter navy for cards */
+      --blue-accent: #4a8bf4;     /* bright blue accent */
+      --blue-light:  #7aa9ff;     /* lighter blue for hover/gradients */
+      --cream:       #f0f4f8;     /* subtle off-white */
+      --white:       #ffffff;
+      --gray:        #94a3b8;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--dark);
+      background: var(--navy-dark);
       color: var(--white);
       overflow-x: hidden;
     }
@@ -36,9 +37,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px 24px;
-      background: rgba(13, 27, 18, 0.92);
+      background: rgba(10, 17, 40, 0.92);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      border-bottom: 1px solid rgba(74, 139, 244, 0.2);
     }
 
     .nav-crest {
@@ -50,8 +51,8 @@
     .crest-icon {
       width: 36px;
       height: 36px;
-      background: var(--green);
-      border: 2px solid var(--gold);
+      background: var(--navy);
+      border: 2px solid var(--blue-accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -69,22 +70,26 @@
     .nav-league {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
-      color: var(--gold);
+      color: var(--blue-accent);
       letter-spacing: 1px;
     }
 
     .nav-cta {
-      background: var(--gold);
-      color: var(--dark);
+      background: var(--blue-accent);
+      color: var(--navy-dark);
       font-weight: 700;
       font-size: 13px;
       padding: 8px 18px;
       border-radius: 4px;
       text-decoration: none;
       letter-spacing: 0.5px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover {
+      background: var(--blue-light);
     }
 
-    /* HERO */
+    /* HERO — Navy + Blue Gradient */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -95,11 +100,11 @@
       padding: 120px 24px 80px;
       position: relative;
       background:
-        linear-gradient(180deg, rgba(13,27,18,0.7) 0%, rgba(13,27,18,0.95) 100%),
+        linear-gradient(160deg, rgba(10,17,40,0.85) 0%, rgba(30,58,107,0.95) 100%),
         repeating-linear-gradient(
           45deg,
-          rgba(26,71,49,0.15) 0px,
-          rgba(26,71,49,0.15) 1px,
+          rgba(74,139,244,0.08) 0px,
+          rgba(74,139,244,0.08) 1px,
           transparent 1px,
           transparent 40px
         );
@@ -109,7 +114,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 12px;
       letter-spacing: 3px;
-      color: var(--gold);
+      color: var(--blue-accent);
       text-transform: uppercase;
       margin-bottom: 20px;
     }
@@ -124,7 +129,7 @@
     }
 
     .hero-title span {
-      color: var(--gold);
+      color: var(--blue-accent);
       display: block;
     }
 
@@ -144,14 +149,18 @@
     }
 
     .btn-primary {
-      background: var(--gold);
-      color: var(--dark);
+      background: var(--blue-accent);
+      color: var(--navy-dark);
       font-weight: 700;
       font-size: 15px;
       padding: 14px 32px;
       border-radius: 4px;
       text-decoration: none;
       letter-spacing: 0.5px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--blue-light);
     }
 
     .btn-outline {
@@ -161,6 +170,11 @@
       padding: 14px 32px;
       border-radius: 4px;
       text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--blue-accent);
+      background: rgba(74, 139, 244, 0.08);
     }
 
     /* TEAMS SECTION */
@@ -174,7 +188,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 3px;
-      color: var(--gold);
+      color: var(--blue-accent);
       text-transform: uppercase;
       margin-bottom: 12px;
     }
@@ -194,22 +208,23 @@
     }
 
     .team-card {
-      background: rgba(26,71,49,0.2);
-      border: 1px solid rgba(26,71,49,0.5);
+      background: rgba(20, 36, 66, 0.5);
+      border: 1px solid rgba(20, 36, 66, 0.8);
       border-radius: 8px;
       padding: 28px 24px;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
 
     .team-card:hover {
-      border-color: var(--gold);
+      border-color: var(--blue-accent);
+      background: rgba(30, 58, 107, 0.4);
     }
 
     .team-badge {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 2px;
-      color: var(--gold);
+      color: var(--blue-accent);
       margin-bottom: 12px;
     }
 
@@ -226,10 +241,12 @@
       line-height: 1.6;
     }
 
-    /* YOUTH SIGNUP */
+    /* YOUTH SIGNUP — Navy background */
     .signup-section {
-      background: var(--green);
+      background: var(--navy);
       padding: 80px 24px;
+      border-top: 1px solid rgba(74, 139, 244, 0.15);
+      border-bottom: 1px solid rgba(74, 139, 244, 0.15);
     }
 
     .signup-inner {
@@ -245,7 +262,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(80px, 14vw, 140px);
       line-height: 1;
-      color: var(--gold);
+      color: var(--blue-accent);
     }
 
     .signup-price-label {
@@ -266,7 +283,7 @@
       font-size: 15px;
       color: rgba(255,255,255,0.85);
       padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -274,20 +291,19 @@
 
     .includes-list li::before {
       content: '✓';
-      color: var(--gold);
+      color: var(--blue-accent);
       font-weight: 700;
       font-size: 13px;
     }
 
     .signup-form-side .section-label { color: rgba(255,255,255,0.5); }
-
     .signup-form-side .section-title { font-size: clamp(32px, 5vw, 48px); }
 
     /* LEAGUE FOOTER BAND */
     .league-band {
-      background: rgba(201,168,76,0.08);
-      border-top: 1px solid rgba(201,168,76,0.2);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
+      background: rgba(74, 139, 244, 0.06);
+      border-top: 1px solid rgba(74, 139, 244, 0.2);
+      border-bottom: 1px solid rgba(74, 139, 244, 0.2);
       padding: 32px 24px;
       text-align: center;
     }
@@ -296,7 +312,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 3px;
-      color: var(--gold);
+      color: var(--blue-accent);
       margin-bottom: 8px;
     }
 
@@ -313,6 +329,9 @@
       display: block;
       margin-top: 6px;
       letter-spacing: 1px;
+    }
+    .league-band-link:hover {
+      color: var(--blue-accent);
     }
 
     /* CONTACT */
@@ -355,8 +374,11 @@
     }
 
     footer a {
-      color: var(--gold);
+      color: var(--blue-accent);
       text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--blue-light);
     }
 
     /* DIVIDER */
