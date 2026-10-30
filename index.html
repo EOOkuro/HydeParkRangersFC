@@ -100,14 +100,8 @@
       padding: 120px 24px 80px;
       position: relative;
       background:
-        linear-gradient(160deg, rgba(10,17,40,0.85) 0%, rgba(30,58,107,0.95) 100%),
-        repeating-linear-gradient(
-          45deg,
-          rgba(74,139,244,0.08) 0px,
-          rgba(74,139,244,0.08) 1px,
-          transparent 1px,
-          transparent 40px
-        );
+        linear-gradient(180deg, rgba(10,17,40,0.55) 0%, rgba(10,17,40,0.72) 65%, #0a1128 100%),
+        url("https://res.cloudinary.com/zuywi9ih/image/upload/v1793326474/IMG_0179_Original.jpg") center / cover no-repeat;
     }
 
     .hero-eyebrow {
@@ -239,6 +233,63 @@
       font-size: 14px;
       color: rgba(255,255,255,0.6);
       line-height: 1.6;
+    }
+
+
+    /* TEAM GROUPS */
+    .team-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin: 48px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .team-group-title:first-of-type { margin-top: 0; }
+
+    .age-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+    }
+    .age-card {
+      background: rgba(20, 36, 66, 0.5);
+      border: 1px solid rgba(20, 36, 66, 0.8);
+      border-radius: 8px;
+      padding: 18px 12px;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .age-card:hover { border-color: var(--blue-accent); background: rgba(30, 58, 107, 0.4); }
+    .age-card b {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+    .age-card span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--blue-accent);
+      text-transform: uppercase;
+    }
+
+    /* PHOTO BAND */
+    .photo-band { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+    .photo-band img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(74, 139, 244, 0.25);
     }
 
     /* YOUTH SIGNUP — Navy background */
@@ -433,7 +484,9 @@
   <!-- TEAMS -->
   <section class="section" id="teams">
     <div class="section-label">The Club</div>
-    <h2 class="section-title">Three Teams.<br>One Community.</h2>
+    <h2 class="section-title">Every Age.<br>One Community.</h2>
+
+    <div class="team-group-title">First Teams</div>
     <div class="teams-grid">
       <div class="team-card">
         <div class="team-badge">MEN'S FIRST TEAM</div>
@@ -441,19 +494,36 @@
         <p class="team-desc">Competing in the OutSouth League — Chicago's premier grassroots adult soccer competition on the South Side.</p>
       </div>
       <div class="team-card">
-        <div class="team-badge">WOMEN'S TEAM</div>
+        <div class="team-badge">WOMEN'S FIRST TEAM</div>
         <div class="team-name">Hyde Park Rangers FC</div>
         <p class="team-desc">Women's competitive play in the OutSouth League. Open to players of all experience levels from Hyde Park and surrounding neighborhoods.</p>
       </div>
-      <div class="team-card">
-        <div class="team-badge">YOUTH · AGES 4–17</div>
-        <div class="team-name">Rangers Academy</div>
-        <p class="team-desc">Structured training, competitive games, and real development for South Side kids. </p>
-      </div>
+    </div>
+
+    <div class="team-group-title">Youth · Rangers Academy · U6 – U18</div>
+    <div class="age-grid">
+      <div class="age-card"><b>U6</b><span>Rangers</span></div>
+      <div class="age-card"><b>U7</b><span>Rangers</span></div>
+      <div class="age-card"><b>U8</b><span>Rangers</span></div>
+      <div class="age-card"><b>U9</b><span>Rangers</span></div>
+      <div class="age-card"><b>U10</b><span>Rangers</span></div>
+      <div class="age-card"><b>U11</b><span>Rangers</span></div>
+      <div class="age-card"><b>U12</b><span>Rangers</span></div>
+      <div class="age-card"><b>U13</b><span>Rangers</span></div>
+      <div class="age-card"><b>U14</b><span>Rangers</span></div>
+      <div class="age-card"><b>U15</b><span>Rangers</span></div>
+      <div class="age-card"><b>U16</b><span>Rangers</span></div>
+      <div class="age-card"><b>U17</b><span>Rangers</span></div>
+      <div class="age-card"><b>U18</b><span>Rangers</span></div>
     </div>
   </section>
 
   <div class="divider"></div>
+
+  <!-- PHOTO -->
+  <figure class="photo-band" style="margin-top:80px;">
+    <img src="https://res.cloudinary.com/zuywi9ih/image/upload/v1793326474/IMG_0922_Original.jpg" alt="Hyde Park Rangers FC" loading="lazy" />
+  </figure>
 
   <!-- YOUTH SIGNUP -->
   <section class="signup-section" id="register">
@@ -466,7 +536,7 @@
           <li>Weekend games</li>
           <li>Full uniform included</li>
           <li>Practice shirt included</li>
-          <li>Ages 4–17 · All skill levels</li>
+          <li>U6–U18 · All skill levels</li>
           <li>No experience necessary</li>
         </ul>
       </div>
