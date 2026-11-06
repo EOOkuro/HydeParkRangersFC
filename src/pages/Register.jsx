@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { fedosReady, registerWithFedos, FEDOS_APP } from "../lib/fedos.js";
 import { LOGO, FORM_ENDPOINT, STRIPE_URL, PRICE, CONTACT_EMAIL, YOUTH_GROUPS, INCLUDES } from "../config.js";
 
 const SIZES = ["Youth S", "Youth M", "Youth L", "Youth XL", "Adult S", "Adult M"];
@@ -39,6 +40,25 @@ export default function Register() {
     if (status === "sending") return;
     setStatus("sending"); setMsg("");
 
+    // Primary path: straight into the club's own list in FedOS (slug: hyde-park-rangers).
+    if (fedosReady) {
+      try {
+        await registerWithFedos("hyde-park-rangers", {
+          guardian: { name: f.parentName, email: f.parentEmail, phone: f.parentPhone, relationship: "parent/guardian",
+            emergency_name: f.emergencyName, emergency_phone: f.emergencyPhone },
+          players: [{ name: f.playerName, dob: f.birthdate, grade: f.ageGroup, school: "Hyde Park Rangers FC", team: f.ageGroup, jersey_size: f.jerseySize, notes: f.notes }],
+          website: "",
+        });
+        if (STRIPE_URL) { window.location.href = `${STRIPE_URL}?prefilled_email=${encodeURIComponent(f.parentEmail)}`; return; }
+        setStatus("done");
+      } catch (err) {
+        setStatus("error");
+        setMsg((err && err.message) || "We couldn't save your registration. Check your connection and try again. Nothing was charged.");
+      }
+      return;
+    }
+
+    // FedOS not connected yet: fall back to the old behaviour so no sign-up is lost.
     // No form service connected yet: open an email to the club instead.
     if (!FORM_ENDPOINT) {
       const url = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Rangers registration: " + f.playerName)}&body=${encodeURIComponent(summary())}`;
@@ -80,7 +100,9 @@ export default function Register() {
         <div className="section-label">Thank you</div>
           <h1 className="section-title">Registration received</h1>
           <p className="signup-copy">
-            {FORM_ENDPOINT
+            {fedosReady
+              ? <>We have your details. To change a phone number, jersey size or emergency contact later, <a href={`${FEDOS_APP}/signup`}>create your free account</a> with the email you just used.</>
+              : FORM_ENDPOINT
               ? "We have your details and will be in touch with next steps."
               : "Your email app should have opened with your registration. Send it to finish signing up."}
           </p>
