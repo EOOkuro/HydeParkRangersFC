@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import ClubGames from "../components/ClubGames.jsx";
 import { BODY_IMAGE, HEADER_IMAGE, LOGO, LEAGUE_URL, CONTACT_EMAIL, FIRST_TEAMS, YOUTH_GROUPS, INCLUDES } from "../config.js";
 
 export default function Home() {
@@ -49,6 +50,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <ClubGames />
 
       <div className="divider" />
 

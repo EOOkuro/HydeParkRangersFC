@@ -1,4 +1,5 @@
-import { LEAGUE_URL, LOGO } from "../config.js";
+import { LEAGUE_URL, LOGO, FEDOS_SLUG } from "../config.js";
+import { loginUrl } from "../lib/fedos-public.js";
 
 export default function Footer() {
   return (
@@ -7,6 +8,7 @@ export default function Footer() {
       <p>
         Hyde Park Rangers FC · Part of the <a href={LEAGUE_URL}>OutSouth League</a> · MegCity Futbol · Chicago, IL
       </p>
+      <p><a href={loginUrl(FEDOS_SLUG)}>Player &amp; parent sign in</a></p>
     </footer>
   );
 }

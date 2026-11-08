@@ -4,6 +4,10 @@ export const BODY_IMAGE = "https://res.cloudinary.com/zuywi9ih/image/upload/v179
 
 export const LOGO = "https://res.cloudinary.com/zuywi9ih/image/upload/v1793333727/IMG_0098.png";
 
+// The name FedOS knows this club by: its games are found by this team name.
+export const CLUB_NAME = "Hyde Park Rangers";
+export const FEDOS_SLUG = "hyde-park-rangers";
+
 export const LEAGUE_URL = "https://chicagosuperleague.com";
 export const CONTACT_EMAIL = "info@chicagosuperleague.com";
 
