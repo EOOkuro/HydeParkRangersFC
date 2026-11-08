@@ -164,3 +164,13 @@ img { max-width: 100%; }
 .game-when { grid-column: 1 / -1; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; color: var(--blue-accent); text-transform: uppercase; }
 .game-score { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
 .game-where { color: rgba(255,255,255,.5); font-size: 12px; align-self: center; }
+
+/* Member login stays visible on phones (the other nav links hide) */
+/* On phones the hero carries the login buttons, so the nav stays short */
+.hero-teams-link { display: inline-block; margin-top: 18px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); }
+
+.login-panel { max-width: 520px; margin: 22px auto 0; padding: 18px 20px; border: 1px solid rgba(255,255,255,.25); border-radius: 6px; background: rgba(0,0,0,.35); text-align: center; }
+.login-panel-title { font-weight: 700; font-size: 15px; letter-spacing: .4px; color: var(--white); }
+.login-panel p { margin: 6px 0 14px; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,.8); }
+.login-panel-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.login-panel-actions .btn-outline { padding: 10px 18px; font-size: 14px; }

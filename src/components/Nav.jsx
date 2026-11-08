@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { LOGO } from "../config.js";
+import { LOGO, FEDOS_SLUG } from "../config.js";
+import { loginUrl, registerUrl } from "../lib/fedos-public.js";
 
 export default function Nav() {
   return (
@@ -13,7 +14,9 @@ export default function Nav() {
       </Link>
       <div className="nav-right">
         <Link to="/#teams" className="nav-link">Teams</Link>
-        <Link to="/register" className="nav-cta">Register Now</Link>
+        <a href={loginUrl("hyde-park-rangers", "player")} className="nav-link nav-signin">Player Log In</a>
+        <a href={loginUrl("hyde-park-rangers", "guardian")} className="nav-link nav-signin">Guardian Log In</a>
+        <a href={registerUrl(FEDOS_SLUG)} className="nav-cta">Register Now</a>
       </div>
     </nav>
   );

@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClubGames from "../components/ClubGames.jsx";
-import { BODY_IMAGE, HEADER_IMAGE, LOGO, LEAGUE_URL, CONTACT_EMAIL, FIRST_TEAMS, YOUTH_GROUPS, INCLUDES } from "../config.js";
+import { loginUrl, registerUrl } from "../lib/fedos-public.js";
+import { FEDOS_SLUG, BODY_IMAGE, HEADER_IMAGE, LOGO, LEAGUE_URL, CONTACT_EMAIL, FIRST_TEAMS, YOUTH_GROUPS, INCLUDES } from "../config.js";
 
 export default function Home() {
   useEffect(() => { document.title = "Hyde Park Rangers FC — Hyde Park's Club"; }, []);
@@ -19,9 +20,17 @@ export default function Home() {
           Men's, women's, and youth soccer rooted in Hyde Park. Everyone welcome. No experience necessary.
         </p>
         <div className="hero-actions">
-          <Link to="/register" className="btn-primary">Register Your Child</Link>
-          <a href="#teams" className="btn-outline">Our Teams</a>
+          <a href={registerUrl(FEDOS_SLUG)} className="btn-primary">New here? Register</a>
         </div>
+        <div className="login-panel">
+          <div className="login-panel-title">Already registered? Log in to FedOS</div>
+          <p>FedOS is our registration and payment system. Log in to pay, update your registration, and see your team and schedule.</p>
+          <div className="login-panel-actions">
+            <a href={loginUrl("hyde-park-rangers", "guardian")} className="btn-outline">Guardian / Parent Log In</a>
+            <a href={loginUrl("hyde-park-rangers", "player")} className="btn-outline">Player Log In</a>
+          </div>
+        </div>
+        <a href="#teams" className="hero-teams-link">See our teams ↓</a>
       </section>
 
       {/* TEAMS */}
@@ -75,7 +84,7 @@ export default function Home() {
             <p className="signup-copy">
               Spots are limited. Hyde Park Rangers FC is building the next generation of South Side footballers — give your child a real team, a real kit, and a real community this summer.
             </p>
-            <Link to="/register" className="btn-primary">Register Now</Link>
+            <a href={registerUrl(FEDOS_SLUG)} className="btn-primary">Register Now</a>
           </div>
         </div>
       </section>
